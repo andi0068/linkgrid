@@ -1,3 +1,4 @@
+import { all } from '@/utils/get-service-utils';
 import { uuid } from '@/utils/uid-utils';
 
 import * as db from './database';
@@ -16,7 +17,7 @@ export async function get() {}
 get.byUserUid = async function (userUid: string): Promise<Link[]> {
   const query = db.query(db.linksRef(), db.orderByChild('user_uid'), db.equalTo(userUid));
 
-  return db.get(query).then((s) => (s.exists() ? Object.values(s.val()) : []));
+  return db.get(query).then((s) => all<Link>(s.val()));
 };
 
 export async function update({ id, ...values }: UpdateProps) {

@@ -1,3 +1,4 @@
+import { all, first } from '@/utils/get-service-utils';
 import { isObject } from '@/utils/is-utils';
 
 import * as db from './database';
@@ -22,7 +23,7 @@ export async function get() {}
 get.byEmailOne = async function (email: string): Promise<User | null> {
   const query = db.query(db.usersRef(), db.orderByChild('email'), db.equalTo(email));
 
-  return db.get(query).then((s) => first<User>(s.val()));
+  return db.get(query).then((s) => first(s.val()));
 };
 
 get.byUid = async function (uid: string): Promise<User | null> {
@@ -34,13 +35,13 @@ get.byUid = async function (uid: string): Promise<User | null> {
 get.byUsername = async function (username: string): Promise<GetByUsernameReturn> {
   const query = db.query(db.usersRef(), db.orderByChild('username'), db.equalTo(username));
 
-  return db.get(query).then((s) => all<User & { username: string }>(s.val()));
+  return db.get(query).then((s) => all(s.val()));
 };
 
 get.byUsernameOne = async function (username: string): Promise<GetByUsernameOneReturn> {
   const query = db.query(db.usersRef(), db.orderByChild('username'), db.equalTo(username));
 
-  return db.get(query).then((s) => first<User & { username: string }>(s.val()));
+  return db.get(query).then((s) => first(s.val()));
 };
 
 export async function update({ uid, ...values }: UpdateProps) {
@@ -80,18 +81,6 @@ export function onUsername(uid: string, cb: (value: string | null) => void) {
 
 export function getErrorCode(err: any, fallback?: string) {
   return isObject(err) && 'code' in err ? (err.code as string) : fallback;
-}
-
-function all<T extends Record<string, any>>(value: Record<string, T> | null) {
-  return value === null ? [] : Object.values(value);
-}
-
-function first<T extends Record<string, any>>(value: Record<string, T> | null) {
-  if (value === null) return null;
-
-  const items = Object.values(value);
-
-  return items.length ? items[0] : null;
 }
 
 export * as storage from './users.storage';
