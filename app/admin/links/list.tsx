@@ -135,9 +135,7 @@ function Form({ id, title, url, onUpdated }: FormProps) {
             )}
           </Field.Consumer>
         </Field.Provider>
-        <button ref={submitRef} type="submit" hidden>
-          Save changes
-        </button>
+        <button ref={submitRef} type="submit" hidden />
       </form>
     </Item.Form>
   );
