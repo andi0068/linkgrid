@@ -40,16 +40,14 @@ function FooterContent() {
   const username = useUsernameData({ uid: auth.currentUser!.uid }, []);
 
   return username.loading ? (
-    <Button type="button" variant="outline" size="xl" disabled>
+    <Button type="button" variant="outline" size="xl" disabled aria-label="Loading">
       <ButtonContent loading />
     </Button>
   ) : username.data ? (
     <CopyButton variant="outline" size="xl" data={urlConfig.profile(username.data)} />
   ) : (
     <>
-      <DrawerClose ref={closeRef} hidden>
-        Close
-      </DrawerClose>
+      <DrawerClose ref={closeRef} hidden />
       <Button asChild variant="none" size="xl">
         <p role="alert">
           Sorry, it seems like your username hasn&apos;t been set yet. Please set your username

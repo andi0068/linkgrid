@@ -61,9 +61,7 @@ export default function AddDrawerContent({ user_uid, onSuccess }: AddDrawerConte
           <Button type="submit" size="lg" disabled={form.state.loading} className="rounded-full">
             <ButtonContent loading={form.state.loading}>Add</ButtonContent>
           </Button>
-          <DrawerClose ref={closeRef} hidden>
-            Cancel
-          </DrawerClose>
+          <DrawerClose ref={closeRef} hidden />
         </DrawerFooter>
       </form>
     </DrawerContent>
