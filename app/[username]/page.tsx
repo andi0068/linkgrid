@@ -38,7 +38,7 @@ export default async function Profile({ params }: PageProps) {
   return (
     <>
       <Header.Root>
-        <Container>
+        <Container className="max-w-screen-sm">
           <Header.Content>
             <Header.Image asChild>
               {user.image ? (
@@ -53,7 +53,7 @@ export default async function Profile({ params }: PageProps) {
         </Container>
       </Header.Root>
       <Main>
-        <Container>
+        <Container className="max-w-screen-sm">
           <Section.Root>
             <Section.Content>
               {links.map((link) => (
@@ -66,7 +66,7 @@ export default async function Profile({ params }: PageProps) {
         </Container>
       </Main>
       <Footer.Root>
-        <Container>
+        <Container className="max-w-screen-sm">
           <Footer.Content>
             <Button asChild size="lg" bg="tertiary" className="rounded-full">
               <Link href={urlConfig.auth.signup}>Create your {siteConfig.name}</Link>
