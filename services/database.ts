@@ -1,6 +1,6 @@
 import * as fire from 'firebase/database';
 
-import { join } from '@/utils/path-utils';
+import { join } from '@/utils/string-utils';
 
 import { app } from './app';
 
