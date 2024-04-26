@@ -2,6 +2,7 @@
 import { useMemo, useContext, createContext } from 'react';
 
 import { useIds } from '@/lib/hooks/use-id';
+import { ariaDescribedBy } from '@/utils/attr-utils';
 
 type ContextType = Readonly<{
   labelProps: {
@@ -46,10 +47,10 @@ export function Provider({ children, name, descriptionMounted, messageMounted }:
       inputProps: {
         id: ids.input,
         name,
-        'aria-describedby': ariaDescribedBy([
+        'aria-describedby': ariaDescribedBy(
           descriptionMounted && ids.desc,
           messageMounted && ids.msg,
-        ]),
+        ),
       },
       descriptionProps: { id: ids.desc },
       messageProps: { id: ids.msg },
@@ -61,9 +62,5 @@ export function Provider({ children, name, descriptionMounted, messageMounted }:
 }
 
 export const Consumer = Context.Consumer;
-
-function ariaDescribedBy(values: any[]) {
-  return values.filter(Boolean).join(' ') || undefined;
-}
 
 export { useFieldContext as useContext };

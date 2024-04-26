@@ -3,6 +3,8 @@ import Link, { type LinkProps } from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useMemo } from 'react';
 
+import { ariaCurrent } from '@/utils/attr-utils';
+
 export interface NavLinkProps extends LinkProps {
   href: string;
   children?: React.ReactNode;
@@ -16,7 +18,7 @@ export interface UseNavLinkProps {
 export default function NavLink({ children, href, exact, ...props }: NavLinkProps) {
   const { active } = useNavLink({ href, exact });
   return (
-    <Link href={href} aria-current={active ? 'page' : undefined} {...props}>
+    <Link href={href} aria-current={ariaCurrent(active, 'page')} {...props}>
       {children}
     </Link>
   );
