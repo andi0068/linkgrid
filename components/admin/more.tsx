@@ -32,7 +32,7 @@ export const Header = {
   Image({ children, asChild }: WithAsProp<BaseProps>) {
     const Comp = asChild ? Slot : 'img';
     return (
-      <Comp width={48} height={48} className="shrink-0 object-cover w-12 h-12 rounded-full">
+      <Comp width={48} height={48} className="shrink-0 object-cover size-12 rounded-full">
         {children}
       </Comp>
     );

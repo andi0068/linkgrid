@@ -93,7 +93,7 @@ export const FormCard = {
     Image({ children, asChild }: WithAsProp<BaseProps>) {
       const Comp = asChild ? Slot : 'img';
       return (
-        <Comp width={96} height={96} className="shrink-0 object-cover w-24 h-24 rounded-full">
+        <Comp width={96} height={96} className="shrink-0 object-cover size-24 rounded-full">
           {children}
         </Comp>
       );

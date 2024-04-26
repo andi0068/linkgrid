@@ -13,7 +13,7 @@ export function Content({ children }: BaseProps) {
 export function Image({ children, asChild }: WithAsProp<BaseProps>) {
   const Comp = asChild ? Slot : 'img';
   return (
-    <Comp width={96} height={96} className="object-cover inline-block mb-4 w-24 h-24 rounded-full">
+    <Comp width={96} height={96} className="object-cover inline-block mb-4 size-24 rounded-full">
       {children}
     </Comp>
   );

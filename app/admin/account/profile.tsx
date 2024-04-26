@@ -191,7 +191,7 @@ function FieldImage({ uid, defaultSrc, disableRemoveButton, loading, onFetch }: 
                 type="file"
                 accept="image/*"
                 onChange={input.onChange}
-                className="cursor-pointer opacity-0 absolute top-0 left-0 w-full h-full"
+                className="cursor-pointer opacity-0 absolute top-0 left-0 size-full"
                 aria-label="Profile Picture"
                 {...provided.inputProps}
               />
