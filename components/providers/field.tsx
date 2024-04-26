@@ -1,5 +1,7 @@
 'use client';
-import { useId, useMemo, useContext, createContext } from 'react';
+import { useMemo, useContext, createContext } from 'react';
+
+import { useIds } from '@/lib/hooks/use-id';
 
 type ContextType = Readonly<{
   labelProps: {
@@ -33,31 +35,27 @@ export function useFieldContext() {
 }
 
 export function Provider({ children, name, descriptionMounted, messageMounted }: ProviderProps) {
-  const id = useId();
+  const ids = useIds('label', 'input', 'desc', 'msg');
 
-  const value = useMemo(() => {
-    const labelId = `${id}--label`;
-    const inputId = `${id}--input`;
-    const descId = `${id}--desc`;
-    const msgId = `${id}--msg`;
-
-    return {
+  const value = useMemo(
+    () => ({
       labelProps: {
-        id: labelId,
-        htmlFor: inputId,
+        id: ids.label,
+        htmlFor: ids.input,
       },
       inputProps: {
-        id: inputId,
+        id: ids.input,
         name,
         'aria-describedby': ariaDescribedBy([
-          descriptionMounted && descId,
-          messageMounted && msgId,
+          descriptionMounted && ids.desc,
+          messageMounted && ids.msg,
         ]),
       },
-      descriptionProps: { id: descId },
-      messageProps: { id: msgId },
-    };
-  }, [name, descriptionMounted, messageMounted, id]);
+      descriptionProps: { id: ids.desc },
+      messageProps: { id: ids.msg },
+    }),
+    [name, descriptionMounted, messageMounted, ids],
+  );
 
   return <Context.Provider value={value}>{children}</Context.Provider>;
 }
